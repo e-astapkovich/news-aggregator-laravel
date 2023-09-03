@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\NewsCategoriesController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,15 +16,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [WelcomeController::class, 'index']);
 
 Route::group(['prefix' => ''], static function() {
     Route::get('/news', [NewsController::class, 'index'])
         ->name('news');
 
-    Route::get('/news/{id}/show', [NewsController::class, 'show'])
+    Route::get('/news/{id}', [NewsController::class, 'show'])
         ->where('id', '\d+')
         ->name('news.show');
+});
+
+Route::group(['prefix' => ''], static function() {
+    Route::get('/news-categories', [NewsCategoriesController::class, 'index']);
+
+    Route::get('/news-categories/{id}', [NewsCategoriesController::class, 'show'])
+        ->where('id', '\d+')
+        ->name('categories.show');
 });
