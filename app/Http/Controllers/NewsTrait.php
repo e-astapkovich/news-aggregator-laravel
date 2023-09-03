@@ -11,6 +11,7 @@ trait NewsTrait {
             for ($i = 1; $i < $newsQty; $i++) {
                 $news[$i] = [
                     'id' => $i,
+                    'category_id' => rand(1, 5),
                     'title' => \fake()->word(),
                     'description' => \fake()->text(20),
                     'created_at' => \now()->format('d-m-Y H:i')
@@ -27,4 +28,4 @@ trait NewsTrait {
                     'created_at' => \now()->format('d-m-Y H:i')
                 ];
     }
-};
+}
