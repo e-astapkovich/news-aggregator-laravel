@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <script src="/docs/5.3/assets/js/color-modes.js"></script>
-    <title>Album example</title>
+    <title>@section('title') ::NewsPortal @show</title>
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
 
 

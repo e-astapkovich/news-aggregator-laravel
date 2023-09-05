@@ -1,4 +1,7 @@
 @extends('layout.main')
+
+@section('title')News List @parent @endsection
+
 @section('content')
 <div class="album py-5 bg-body-tertiary">
     <div class="container">

@@ -1,4 +1,7 @@
 @extends('layout.main')
+
+@section('title') <?=$new['title']?> @parent @endsection
+
 @section('content')
 
 <div class="container">
