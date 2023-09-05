@@ -27,7 +27,7 @@ class NewsCategoriesController extends Controller
         }
 
         return view('news.index', [
-            'news' => $newsByCategory
+            'newsList' => $newsByCategory
         ]);
     }
 }

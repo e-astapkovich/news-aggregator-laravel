@@ -8,7 +8,7 @@ trait NewsTrait {
         $news = [];
         $newsQty = 10;
         if ($id === null) {
-            for ($i = 1; $i < $newsQty; $i++) {
+            for ($i = 1; $i <= $newsQty; $i++) {
                 $news[$i] = [
                     'id' => $i,
                     'category_id' => rand(1, 5),
