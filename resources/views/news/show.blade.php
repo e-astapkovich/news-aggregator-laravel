@@ -1,7 +1,6 @@
 @extends('layout.main')
 
-@section('title') <?=$new['title']?> @parent @endsection
-
+@section('title') <?=$new['title']?> @parent @stop
 @section('content')
 
 <div class="container">

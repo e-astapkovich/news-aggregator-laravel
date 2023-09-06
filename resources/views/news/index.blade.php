@@ -1,6 +1,6 @@
 @extends('layout.main')
 
-@section('title')News List @parent @endsection
+@section('title')News List @parent @stop
 
 @section('content')
 <div class="album py-5 bg-body-tertiary">
