@@ -16,25 +16,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+
+Route::prefix('news')->name('news.')->group(static function() {
+    Route::get('/', [NewsController::class, 'index'])
+        ->name('index');
+
+    Route::get('/{id}', [NewsController::class, 'show'])
+        ->where('id', '\d+')
+        ->name('show');
+});
+
+Route::prefix('news-categories')->name('categories.')->group(static function() {
+    Route::get('/', [NewsCategoriesController::class, 'index'])
+        ->name('index');
+
+    Route::get('/{id}', [NewsCategoriesController::class, 'show'])
+        ->where('id', '\d+')
+        ->name('show');
+});
+
+// Route::group(['prefix' => ''], static function() {
+//     Route::get('/news-categories', [NewsCategoriesController::class, 'index']);
+
+//     Route::get('/news-categories/{id}', [NewsCategoriesController::class, 'show'])
+//         ->where('id', '\d+')
+//         ->name('categories.show');
 // });
-
-Route::get('/', [WelcomeController::class, 'index']);
-
-Route::group(['prefix' => ''], static function() {
-    Route::get('/news', [NewsController::class, 'index'])
-        ->name('news');
-
-    Route::get('/news/{id}', [NewsController::class, 'show'])
-        ->where('id', '\d+')
-        ->name('news.show');
-});
-
-Route::group(['prefix' => ''], static function() {
-    Route::get('/news-categories', [NewsCategoriesController::class, 'index']);
-
-    Route::get('/news-categories/{id}', [NewsCategoriesController::class, 'show'])
-        ->where('id', '\d+')
-        ->name('categories.show');
-});

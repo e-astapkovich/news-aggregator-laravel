@@ -14,7 +14,7 @@ class NewsController extends Controller
         // return $this->getNews();
         return view('news.index', [
             'newsList' => $this->getNews()
-            // 'newsList' => []
+            // 'newsList' => [] // тест пустой страницы новостей
         ]);
     }
 
