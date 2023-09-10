@@ -3,16 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\NewsTrait;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    use NewsTrait;
+
     public function index()
     {
-        //
+        return view('admin.news.index', [
+            'newsList' => $this->getNews()
+        ]);
     }
 
     /**

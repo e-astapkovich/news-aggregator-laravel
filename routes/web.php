@@ -3,6 +3,7 @@
 use App\Http\Controllers\NewsCategoriesController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,3 +44,8 @@ Route::prefix('news-categories')->name('categories.')->group(static function() {
 //         ->where('id', '\d+')
 //         ->name('categories.show');
 // });
+
+Route::prefix('admin')->name('admin.')->group(static function() {
+    Route::get('/', [AdminNewsController::class, 'index'])
+        ->name('index');
+});
