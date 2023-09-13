@@ -12,10 +12,13 @@ class NewsController extends Controller
     public function index(): View {
         // return 'Show list of news';
         // return $this->getNews();
-        return view('news.index', [
+
+        return view('news.index')
+            ->with([
             'newsList' => $this->getNews()
             // 'newsList' => [] // тест пустой страницы новостей
-        ]);
+            ]
+        );
     }
 
     public function show(int $id): View {
