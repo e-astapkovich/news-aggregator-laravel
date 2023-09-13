@@ -48,4 +48,5 @@ Route::prefix('news-categories')->name('categories.')->group(static function() {
 Route::prefix('admin')->name('admin.')->group(static function() {
     Route::get('/', [AdminNewsController::class, 'index'])
         ->name('index');
+    Route::resource('/news', AdminNewsController::class);
 });
