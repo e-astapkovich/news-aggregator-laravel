@@ -8,9 +8,9 @@
         </div>
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="<?=route('welcome')?>" class="nav-link px-2 @if(request()->routeIs('welcome')) link-secondary @endif">Главная</a></li>
-            <li><a href="<?=route('news.index')?>" class="nav-link px-2 @if(request()->routeIs('news.index')) link-secondary @endif">Новости</a></li>
-            <li><a href="<?=route('categories.index')?>" class="nav-link px-2 @if(request()->routeIs('categories.index')) link-secondary @endif">Категории</a></li>
+            <li><a href="{{ route('welcome') }}" class="nav-link px-2 @if(request()->routeIs('welcome')) link-secondary @endif">Главная</a></li>
+            <li><a href="{{ route('news.index') }}" class="nav-link px-2 @if(request()->routeIs('news.index')) link-secondary @endif">Новости</a></li>
+            <li><a href="{{ route('categories.index') }}" class="nav-link px-2 @if(request()->routeIs('categories.index')) link-secondary @endif">Категории</a></li>
         </ul>
 
         <div class="col-md-3 text-end">

@@ -3,7 +3,9 @@
 use App\Http\Controllers\NewsCategoriesController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\Admin\IndexController as AdminIndexController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,7 +48,8 @@ Route::prefix('news-categories')->name('categories.')->group(static function() {
 // });
 
 Route::prefix('admin')->name('admin.')->group(static function() {
-    Route::get('/', [AdminNewsController::class, 'index'])
+    Route::get('/', [AdminIndexController::class, 'index'])
         ->name('index');
     Route::resource('/news', AdminNewsController::class);
+    Route::resource('/categories', AdminCategoryController::class);
 });

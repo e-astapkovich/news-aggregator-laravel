@@ -31,7 +31,7 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        return 'test';
+        dump($request->title);
     }
 
     /**
