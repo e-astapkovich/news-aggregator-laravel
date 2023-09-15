@@ -16,12 +16,9 @@ class CategoryController extends Controller
             ->with(['categoriesList' => $this->getCategories()]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view ('admin.categories.create');
     }
 
     /**
@@ -29,7 +26,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dump($request->all());
     }
 
     /**
