@@ -17,7 +17,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('admin.news.index')) active @endif" @if(request()->routeIs('admin.news.index')) aria-current="page" @endif href="{{ route('admin.news.index') }}">
+                    <a class="nav-link d-flex align-items-center gap-2
+                    @if(
+                        request()->routeIs('admin.news.index') ||
+                        request()->routeIs('admin.news.create')
+                        )
+                        active
+                    @endif"
+                    @if(request()->routeIs('admin.news.index')) aria-current="page"
+                    @endif href="{{ route('admin.news.index') }}">
                         <svg class="bi">
                             <use xlink:href="#file-earmark" />
                         </svg>
