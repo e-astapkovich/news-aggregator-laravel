@@ -10,7 +10,10 @@ class NewsController extends Controller
 {
     public function index(): View {
 
-        $news = DB::table('news')->get();
+        $news = DB::table('news')
+            ->join('categories', 'news.category_id', '=', 'categories.id')
+            ->select('news.*', 'categories.name as categoryName')
+            ->get();
 
         return view('news.index')
             ->with([

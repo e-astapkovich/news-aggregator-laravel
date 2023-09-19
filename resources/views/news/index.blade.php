@@ -32,7 +32,8 @@
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
                 {{-- <button type="button" class="btn btn-sm btn-outline-secondary">View</button> --}}
-                <a href="<?=route('categories.show', ['id' => $new->category_id])?>">category-<?=$new->category_id?>
+                <a href="<?=route('categories.show', ['id' => $new->category_id])?>">
+                  {{ $new->categoryName }}
                 </a>
               </div>
               <small class="text-body-secondary">{{ $new->created_at }}</small>
