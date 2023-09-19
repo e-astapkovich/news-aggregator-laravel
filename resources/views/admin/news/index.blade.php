@@ -20,6 +20,7 @@
                 <th scope="col">id</th>
                 <th scope="col">Title</th>
                 <th scope="col">Description</th>
+                <th scope="col">Author</th>
                 <th scope="col">Category</th>
                 <th scope="col">Действия</th>
             </tr>
@@ -29,10 +30,11 @@
             @forelse ($newsList as $new)
 
             <tr>
-                <td>{{$new['id']}}</td>
-                <td>{{$new['title']}}</td>
-                <td>{{$new['description']}}</td>
-                <td>{{$new['category_id']}}</td>
+                <td>{{$new->id}}</td>
+                <td>{{$new->title}}</td>
+                <td>{{$new->description}}</td>
+                <td>{{$new->author}}</td>
+                <td>{{$new->category_id}}</td>
                 <td><a href="#">Ред.</a> | <a href="#">Уд.</a></td>
             </tr>
             @empty

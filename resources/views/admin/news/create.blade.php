@@ -34,6 +34,21 @@
         <label for="description">Описание</label>
         <textarea class="form-control" name="description" id="description">{{ old('description') }}</textarea>
     </div>
+    <div class="form-group">
+        <label for="category">Автор</label>
+        <select class="form-select" name="category" id="category">
+
+            @foreach ($categories as $category)
+
+                <option value="{{ $category->name }}">
+                    {{ $category->name }}
+                </option>
+
+            @endforeach
+
+        </select>
+    </div>
+
     <br>
     <button type="submit" class="btn btn-success">Save</button>
 
