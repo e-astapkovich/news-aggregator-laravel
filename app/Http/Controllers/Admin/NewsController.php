@@ -37,7 +37,18 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        dump($request->title);
+        $new = $request->except(['_token']);
+
+        DB::table('news')->insert($new);
+
+        $news = DB::table('news')
+            ->join('categories', 'news.category_id', '=', 'categories.id')
+            ->select('news.*', 'categories.name as categoryName')
+            ->get();
+
+        return view('admin.news.index', [
+            'newsList' => $news
+        ]);
     }
 
     /**

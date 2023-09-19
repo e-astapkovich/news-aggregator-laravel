@@ -36,11 +36,11 @@
     </div>
     <div class="form-group">
         <label for="category">Автор</label>
-        <select class="form-select" name="category" id="category">
+        <select class="form-select" name="category_id" id="category">
 
             @foreach ($categories as $category)
 
-                <option value="{{ $category->name }}">
+                <option value="{{ $category->id }}">
                     {{ $category->name }}
                 </option>
 
