@@ -4,28 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
-    use NewsTrait;
-
     public function index(): View {
-        // return 'Show list of news';
-        // return $this->getNews();
+
+        $news = DB::table('news')->get();
 
         return view('news.index')
             ->with([
-            'newsList' => $this->getNews()
+            'newsList' => $news
             // 'newsList' => [] // тест пустой страницы новостей
             ]
         );
     }
 
     public function show(int $id): View {
-        // return "New with #ID " . $id;
-        // return $this->getNews($id);
+
+        $new = DB::table('news')->find($id);
         return view('news.show', [
-            'new' => $this->getNews($id)
+            'new' => $new
         ]);
     }
 }
