@@ -19,6 +19,8 @@ class NewsCategoriesController extends Controller
     public function show(int $id) {
 
         $newsByCategory = DB::table('news')
+            ->join('categories', 'news.category_id', '=', 'categories.id')
+            ->select('news.*', 'categories.name as categoryName')
             ->where('category_id', $id)
             ->get();
 
