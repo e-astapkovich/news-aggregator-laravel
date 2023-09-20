@@ -26,17 +26,17 @@
               dy=".3em">Thumbnail</text>
           </svg>
           <div class="card-body">
-            <p class="card-text fw-bold">{{ $new['title'] }}</p>
-            <p class="card-text">{{ $new['description'] }}</p>
-            <a href="<?=route('news.show', ['id' => $new['id']])?>">Подробнее...</a>
+            <p class="card-text fw-bold">{{ $new->title }}</p>
+            <p class="card-text">{{ $new->description }}</p>
+            <a href="<?=route('news.show', ['id' => $new->id])?>">Подробнее...</a>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
                 {{-- <button type="button" class="btn btn-sm btn-outline-secondary">View</button> --}}
-                <a href="<?=route('categories.show', ['id' => $new['category_id']])?>">category-
-                  <?=$new['category_id']?>
+                <a href="<?=route('categories.show', ['id' => $new->category_id])?>">
+                  {{ $new->categoryName }}
                 </a>
               </div>
-              <small class="text-body-secondary">{{ $new['created_at'] }}</small>
+              <small class="text-body-secondary">{{ $new->created_at }}</small>
             </div>
           </div>
         </div>

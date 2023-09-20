@@ -6,15 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\NewsTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
-    use NewsTrait;
-
     public function index()
     {
+        $news = DB::table('news')
+            ->join('categories', 'news.category_id', '=', 'categories.id')
+            ->select('news.*', 'categories.name as categoryName')
+            ->get();
+
         return view('admin.news.index', [
-            'newsList' => $this->getNews()
+            'newsList' => $news
         ]);
     }
 
@@ -23,7 +27,9 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('admin.news.create');
+        $categories = DB::table('categories')->get();
+        return view('admin.news.create')
+            ->with(['categories' => $categories]);
     }
 
     /**
@@ -31,7 +37,18 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        dump($request->title);
+        $new = $request->except(['_token']);
+
+        DB::table('news')->insert($new);
+
+        $news = DB::table('news')
+            ->join('categories', 'news.category_id', '=', 'categories.id')
+            ->select('news.*', 'categories.name as categoryName')
+            ->get();
+
+        return view('admin.news.index', [
+            'newsList' => $news
+        ]);
     }
 
     /**
