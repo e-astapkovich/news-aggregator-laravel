@@ -11,6 +11,7 @@
             <li><a href="{{ route('welcome') }}" class="nav-link px-2 @if(request()->routeIs('welcome')) link-secondary @endif">Главная</a></li>
             <li><a href="{{ route('news.index') }}" class="nav-link px-2 @if(request()->routeIs('news.index')) link-secondary @endif">Новости</a></li>
             <li><a href="{{ route('categories.index') }}" class="nav-link px-2 @if(request()->routeIs('categories.index')) link-secondary @endif">Категории</a></li>
+            <li><a href="{{ route('admin.index') }}" class="nav-link px-2 @if(request()->routeIs('admin.*')) link-secondary @endif">Админка</a></li>
         </ul>
 
         <div class="col-md-3 text-end">
@@ -19,3 +20,7 @@
         </div>
     </header>
 </div>
+
+@if (request()->route)
+
+@endif
