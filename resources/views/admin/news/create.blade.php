@@ -23,14 +23,6 @@
         <input type="text" class="form-control" name="author" id="author" value="{{ old('author') }}">
     </div>
     <div class="form-group">
-        <label for="status">Статус</label>
-        <select class="form-control" name="status" id="status">
-            <option @if(old('status')==='draft' ) selected @endif>draft</option>
-            <option @if(old('status')==='active' ) selected @endif>active</option>
-            <option @if(old('status')==='blocked' ) selected @endif>blocked</option>
-        </select>
-    </div>
-    <div class="form-group">
         <label for="description">Описание</label>
         <textarea class="form-control" name="description" id="description">{{ old('description') }}</textarea>
     </div>
@@ -48,10 +40,16 @@
 
         </select>
     </div>
-
+    <div class="form-group">
+        <label for="status">Статус</label>
+        <select class="form-select" name="status" id="status">
+            <option @if(old('status')==='draft' ) selected @endif>draft</option>
+            <option @if(old('status')==='active' ) selected @endif>active</option>
+            <option @if(old('status')==='blocked' ) selected @endif>blocked</option>
+        </select>
+    </div>
     <br>
     <button type="submit" class="btn btn-success">Save</button>
-
 </form>
 
 @endsection
