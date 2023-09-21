@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -10,10 +11,16 @@ class NewsController extends Controller
 {
     public function index(): View {
 
-        $news = DB::table('news')
-            ->join('categories', 'news.category_id', '=', 'categories.id')
-            ->select('news.*', 'categories.name as categoryName')
-            ->get();
+        // $news = News::all();
+        $news = News::paginate(9);
+
+        // $news = DB::table('news')
+        //     ->join('categories', 'news.category_id', '=', 'categories.id')
+        //     ->select('news.*', 'categories.name as categoryName')
+        //     ->get();
+
+            // dump($news);
+            // exit;
 
         return view('news.index')
             ->with([
@@ -23,12 +30,15 @@ class NewsController extends Controller
         );
     }
 
-    public function show(int $id): View {
+    public function show(News $news): View {
 
-        $new = DB::table('news')->find($id);
+        // $new = DB::table('news')->find($id);
 
-        return view('news.show', [
-            'new' => $new
-        ]);
+        // $news = News::find($id);
+
+        return view('news.show')
+            ->with(
+                ['news' => $news]
+            );
     }
 }
