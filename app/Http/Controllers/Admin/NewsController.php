@@ -7,24 +7,19 @@ use App\Http\Controllers\NewsTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\News;
 
 class NewsController extends Controller
 {
     public function index()
     {
-        $news = DB::table('news')
-            ->join('categories', 'news.category_id', '=', 'categories.id')
-            ->select('news.*', 'categories.name as categoryName')
-            ->get();
+        $news = News::all();
 
         return view('admin.news.index', [
             'newsList' => $news
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $categories = DB::table('categories')->get();
@@ -32,25 +27,24 @@ class NewsController extends Controller
             ->with(['categories' => $categories]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->flash();
 
-        $news = $request->except(['_token']);
+        $data = $request->only(
+            'title',
+            'description',
+            'category_id',
+            'author',
+            'status'
+        );
 
-        DB::table('news')->insert($news);
+        $news = new News($data);
 
-        $newsList = DB::table('news')
-            ->join('categories', 'news.category_id', '=', 'categories.id')
-            ->select('news.*', 'categories.name as categoryName')
-            ->get();
-
-        return view('admin.news.index', [
-            'newsList' => $newsList
-        ]);
+        if($news->save()) {
+            return redirect()->route('admin.news.index')->with('succcess', 'Запись успешно создана');
+        }
+        return back()->with('error', 'Не удалось добавить запись');
     }
 
     /**
