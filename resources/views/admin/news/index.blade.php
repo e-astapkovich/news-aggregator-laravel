@@ -14,6 +14,7 @@
     </div>
 </div>
 <div class="table-responsive small">
+    @include('inc.message')
     <table class="table table-striped table-sm">
         <thead>
             <tr>

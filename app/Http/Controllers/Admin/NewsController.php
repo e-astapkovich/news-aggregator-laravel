@@ -42,7 +42,7 @@ class NewsController extends Controller
         $news = new News($data);
 
         if($news->save()) {
-            return redirect()->route('admin.news.index')->with('succcess', 'Запись успешно создана');
+            return redirect()->route('admin.news.index')->with('success', 'Запись успешно создана');
         }
         return back()->with('error', 'Не удалось добавить запись');
     }
