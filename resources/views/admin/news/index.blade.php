@@ -28,14 +28,14 @@
         </thead>
         <tbody>
 
-            @forelse ($newsList as $new)
+            @forelse ($newsList as $news)
 
             <tr>
-                <td>{{$new->id}}</td>
-                <td>{{$new->title}}</td>
-                <td>{{$new->description}}</td>
-                <td>{{$new->author}}</td>
-                <td>{{$new->category_id}}</td>
+                <td>{{$news->id}}</td>
+                <td>{{$news->title}}</td>
+                <td>{{$news->description}}</td>
+                <td>{{$news->author}}</td>
+                <td>{{$news->category_id}}</td>
                 <td><a href="#">Ред.</a> | <a href="#">Уд.</a></td>
             </tr>
             @empty
