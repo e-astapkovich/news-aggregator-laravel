@@ -36,7 +36,7 @@
                 <td>{{$news->description}}</td>
                 <td>{{$news->author}}</td>
                 <td>{{$news->category_id}}</td>
-                <td><a href="#">Ред.</a> | <a href="#">Уд.</a></td>
+                <td><a href="{{ route('admin.news.edit', $news) }}">Ред.</a> | <a href="#">Уд.</a></td>
             </tr>
             @empty
             <tr>

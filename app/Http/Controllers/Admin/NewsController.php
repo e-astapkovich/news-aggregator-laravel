@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\NewsTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\News;
+use App\Models\Category;
 
 class NewsController extends Controller
 {
@@ -58,17 +58,36 @@ class NewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(News $news): view
     {
-        //
+        $categories = Category::all();
+        return view('admin.news.edit')
+            ->with([
+                'categories' => $categories,
+                'news' => $news
+            ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, News $news)
     {
-        //
+        $data = $request->only(
+            'title',
+            'description',
+            'category_id',
+            'author',
+            'status'
+        );
+
+        $news->fill($data);
+
+        if($news->save()) {
+            return redirect()->route('admin.news.index')->with('success', 'Запись успешно изменена');
+        }
+        return back()->with('error', 'Не удалось изменить запись');
+
     }
 
     /**
