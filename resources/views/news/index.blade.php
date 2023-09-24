@@ -34,7 +34,7 @@
               <div class="btn-group">
                 {{-- <button type="button" class="btn btn-sm btn-outline-secondary">View</button> --}}
                 <a href="{{ route('categories.show', ['id' => $news->category_id]) }}">
-                  {{ $news->categoryName }}
+                  {{ $news->category->name }}
                 </a>
               </div>
               <small class="text-body-secondary">{{ $news->created_at }}</small>

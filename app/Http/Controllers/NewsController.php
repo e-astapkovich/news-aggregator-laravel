@@ -12,15 +12,14 @@ class NewsController extends Controller
     public function index(): View {
 
         // $news = News::all();
-        $news = News::paginate(9);
+        $news = News::query()
+            ->with('category')
+            ->paginate(9);
 
         // $news = DB::table('news')
         //     ->join('categories', 'news.category_id', '=', 'categories.id')
         //     ->select('news.*', 'categories.name as categoryName')
         //     ->get();
-
-            // dump($news);
-            // exit;
 
         return view('news.index')
             ->with([
