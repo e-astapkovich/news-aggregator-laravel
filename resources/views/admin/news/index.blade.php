@@ -15,14 +15,24 @@
 </div>
 <div class="table-responsive small">
     @include('inc.message')
+    <form>
+        <span>Статус: </span>
+        <select id="filter">
+            <option>--выберите вариант--</option>
+            <option>{{ \App\Enums\News\Status::DRAFT->value }}</option>
+            <option>{{ \App\Enums\News\Status::ACTIVE->value }}</option>
+            <option>{{ \App\Enums\News\Status::BLOCKED->value }}</option>
+        </select>
+    </form>
     <table class="table table-striped table-sm">
         <thead>
             <tr>
                 <th scope="col">id</th>
-                <th scope="col">Title</th>
-                <th scope="col">Description</th>
-                <th scope="col">Author</th>
-                <th scope="col">Category</th>
+                <th scope="col">Заголовок</th>
+                <th scope="col">Описание</th>
+                <th scope="col">Автор</th>
+                <th scope="col">Категория</th>
+                <th scope="col">Статус</th>
                 <th scope="col">Действия</th>
             </tr>
         </thead>
@@ -36,8 +46,10 @@
                 <td>{{ $news->description }}</td>
                 <td>{{ $news->author }}</td>
                 <td>{{ $news->category->name }}</td>
+                <td>{{ $news->status }}</td>
                 <td>
-                    <a class="link-offset-2 link-underline link-underline-opacity-0" href="{{ route('admin.news.edit', $news) }}">
+                    <a class="link-offset-2 link-underline link-underline-opacity-0"
+                        href="{{ route('admin.news.edit', $news) }}">
                         <svg fill="#000000" width="20px" height="20px" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -73,3 +85,15 @@
 </div>
 
 @endsection
+
+@push('js')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let filter = document.getElementById('filter');
+        filter.addEventListener('change', function(e) {
+            console.log('hello from filter');
+            location.href = "?f=" + this.value;
+        })
+        });
+</script>
+@endpush
