@@ -11,15 +11,21 @@
     </div>
 </div>
 
+@include('inc.message')
+
 <form method="post" action="{{ route('admin.categories.store') }}">
 
     @csrf
     <div class="form-group">
-        <label for="title">Название категории</label>
-        <input type="text" class="form-control" name="name" id="title" value="">
+        <label for="title">Название</label>
+        <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}">
+    </div>
+    <div class="form-group">
+        <label for="description">Описание</label>
+        <input type="text" class="form-control" name="description" id="description" value="{{ old('description') }}">
     </div>
     <br>
-    <button type="submit" class="btn btn-success">Save</button>
+    <button type="submit" class="btn btn-success">Сохранить</button>
 
 </form>
 

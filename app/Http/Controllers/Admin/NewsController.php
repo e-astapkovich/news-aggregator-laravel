@@ -18,14 +18,14 @@ class NewsController extends Controller
             ->with('category')
             ->get();
 
-        return view('admin.news.index', [
-            'newsList' => $news
-        ]);
+        return view('admin.news.index')
+            ->with(['newsList' => $news]);
     }
 
     public function create()
     {
-        $categories = DB::table('categories')->get();
+        $categories = Category::all();
+
         return view('admin.news.create')
             ->with(['categories' => $categories]);
     }
