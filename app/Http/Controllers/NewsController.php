@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
@@ -14,7 +12,7 @@ class NewsController extends Controller
         // $news = News::all();
         $news = News::query()
             ->with('category')
-            ->paginate(9);
+            ->paginate(6);
 
         // $news = DB::table('news')
         //     ->join('categories', 'news.category_id', '=', 'categories.id')
