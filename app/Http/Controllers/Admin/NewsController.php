@@ -13,7 +13,9 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $news = News::all();
+        $news = News::query()
+            ->with('category')
+            ->get();
 
         return view('admin.news.index', [
             'newsList' => $news
