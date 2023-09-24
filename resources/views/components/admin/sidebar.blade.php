@@ -18,22 +18,21 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2
-                    @if(
-                        request()->routeIs('admin.news.index') ||
-                        request()->routeIs('admin.news.create')
-                        )
-                        active
-                    @endif"
-                    @if(request()->routeIs('admin.news.index')) aria-current="page"
-                    @endif href="{{ route('admin.news.index') }}">
-                        <svg class="bi">
-                            <use xlink:href="#file-earmark" />
-                        </svg>
-                        Новости
+                        @if(request()->routeIs('admin.news.*'))
+                            active
+                        @endif"
+                        @if(request()->routeIs('admin.news.*'))
+                            aria-current="page"
+                        @endif
+                        href="{{ route('admin.news.index') }}">
+                            <svg class="bi">
+                                <use xlink:href="#file-earmark" />
+                            </svg>
+                            Новости
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('admin.categories.index')) active @endif" @if(request()->routeIs('admin.categories.index')) aria-current="page" @endif href="{{ route('admin.categories.index') }}">
+                    <a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('admin.categories.*')) active @endif" @if(request()->routeIs('admin.categories.*')) aria-current="page" @endif href="{{ route('admin.categories.index') }}">
                         <svg class="bi">
                             <use xlink:href="#cart" />
                         </svg>

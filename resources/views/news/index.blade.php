@@ -16,7 +16,8 @@
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-      @forelse ($newsList as $new)
+      @forelse ($newsList as $news)
+
       <div class="col">
         <div class="card shadow-sm">
           <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
@@ -26,17 +27,17 @@
               dy=".3em">Thumbnail</text>
           </svg>
           <div class="card-body">
-            <p class="card-text fw-bold">{{ $new->title }}</p>
-            <p class="card-text">{{ $new->description }}</p>
-            <a href="<?=route('news.show', ['id' => $new->id])?>">Подробнее...</a>
+            <p class="card-text fw-bold">{{ $news->title }}</p>
+            <p class="card-text">{{ $news->description }}</p>
+            <a href="{{  route('news.show', $news) }}">Подробнее...</a>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
                 {{-- <button type="button" class="btn btn-sm btn-outline-secondary">View</button> --}}
-                <a href="<?=route('categories.show', ['id' => $new->category_id])?>">
-                  {{ $new->categoryName }}
+                <a href="{{ route('categories.show', ['id' => $news->category_id]) }}">
+                  {{ $news->categoryName }}
                 </a>
               </div>
-              <small class="text-body-secondary">{{ $new->created_at }}</small>
+              <small class="text-body-secondary">{{ $news->created_at }}</small>
             </div>
           </div>
         </div>
@@ -48,8 +49,10 @@
       @endforelse
 
     </div>
+    <br>
+    {{ $newsList->links() }}
   </div>
 </div>
 
-</main>
+
 @endsection

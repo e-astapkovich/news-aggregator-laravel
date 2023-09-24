@@ -25,8 +25,7 @@ Route::prefix('news')->name('news.')->group(static function() {
     Route::get('/', [NewsController::class, 'index'])
         ->name('index');
 
-    Route::get('/{id}', [NewsController::class, 'show'])
-        ->where('id', '\d+')
+    Route::get('/{news}', [NewsController::class, 'show'])
         ->name('show');
 });
 

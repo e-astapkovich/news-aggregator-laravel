@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\NewsTrait;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    use NewsTrait;
-
     public function index()
     {
+        $categories = Category::all();
+
         return view('admin.categories.index')
-            ->with(['categoriesList' => $this->getCategories()]);
+            ->with(['categoriesList' => $categories]);
     }
 
     public function create()
@@ -21,12 +21,19 @@ class CategoryController extends Controller
         return view ('admin.categories.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        dump($request->all());
+        $request->flash();
+        $data = $request->only([
+            'name',
+            'description'
+        ]);
+        $category = new Category($data);
+        if ($category->save()) {
+            return redirect(route('admin.categories.index'))->with('success', 'Категория успешно добавлена');
+        }
+        return back()->with('error', 'Не удалось добавить категорию');
+        // dump($request->all());
     }
 
     /**
@@ -37,20 +44,27 @@ class CategoryController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit')
+            ->with(['category' => $category]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $request->flash();
+
+        $data = $request->only([
+            'name',
+            'description'
+        ]);
+
+        $category->fill($data);
+
+        if ($category->save()) {
+            return redirect(route('admin.categories.index'))->with('success', 'Категория успешно обновлена');
+        }
+        return back()->with('error', 'Не удалось изменить категорию');
     }
 
     /**

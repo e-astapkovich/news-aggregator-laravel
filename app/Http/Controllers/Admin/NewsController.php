@@ -3,52 +3,51 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\NewsTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\News;
+use App\Models\Category;
 
 class NewsController extends Controller
 {
     public function index()
     {
-        $news = DB::table('news')
-            ->join('categories', 'news.category_id', '=', 'categories.id')
-            ->select('news.*', 'categories.name as categoryName')
+        $news = News::query()
+            ->status()
+            ->with('category')
             ->get();
 
-        return view('admin.news.index', [
-            'newsList' => $news
-        ]);
+        return view('admin.news.index')
+            ->with(['newsList' => $news]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        $categories = DB::table('categories')->get();
+        $categories = Category::all();
+
         return view('admin.news.create')
             ->with(['categories' => $categories]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $new = $request->except(['_token']);
+        $request->flash();
 
-        DB::table('news')->insert($new);
+        $data = $request->only(
+            'title',
+            'description',
+            'category_id',
+            'author',
+            'status'
+        );
 
-        $news = DB::table('news')
-            ->join('categories', 'news.category_id', '=', 'categories.id')
-            ->select('news.*', 'categories.name as categoryName')
-            ->get();
+        $news = new News($data);
 
-        return view('admin.news.index', [
-            'newsList' => $news
-        ]);
+        if($news->save()) {
+            return redirect()->route('admin.news.index')->with('success', 'Запись успешно создана');
+        }
+        return back()->with('error', 'Не удалось добавить запись');
     }
 
     /**
@@ -62,17 +61,36 @@ class NewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(News $news): view
     {
-        //
+        $categories = Category::all();
+        return view('admin.news.edit')
+            ->with([
+                'categories' => $categories,
+                'news' => $news
+            ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, News $news)
     {
-        //
+        $data = $request->only(
+            'title',
+            'description',
+            'category_id',
+            'author',
+            'status'
+        );
+
+        $news->fill($data);
+
+        if($news->save()) {
+            return redirect()->route('admin.news.index')->with('success', 'Запись успешно изменена');
+        }
+        return back()->with('error', 'Не удалось изменить запись');
+
     }
 
     /**
