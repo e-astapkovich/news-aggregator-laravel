@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\News;
 use App\Models\Category;
 
@@ -16,7 +15,7 @@ class NewsController extends Controller
         $news = News::query()
             ->status()
             ->with('category')
-            ->get();
+            ->paginate(10);
 
         return view('admin.news.index')
             ->with(['newsList' => $news]);
@@ -96,8 +95,12 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(News $news)
     {
-        //
+        // $news->delete();
+        if($news->delete()) {
+            return redirect()->route('admin.news.index')->with('success', 'Запись успешно удалена');
+        }
+        return redirect()->route('admin.news.index')->with('error', 'Не удалось удалить запись');
     }
 }

@@ -15,6 +15,7 @@
         </li>
         <?php endforeach; ?>
     </ul>
+    {{ $categories->links() }}
 </div>
 
 @endsection

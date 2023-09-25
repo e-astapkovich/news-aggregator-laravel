@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -9,7 +11,7 @@ class NewsCategoriesController extends Controller
 {
     public function index() {
 
-        $categories = DB::table('categories')->get();
+        $categories = Category::paginate(5);
 
         return view('news-categories.categoriesList', [
             'categories' => $categories
@@ -18,11 +20,10 @@ class NewsCategoriesController extends Controller
 
     public function show(int $id) {
 
-        $newsByCategory = DB::table('news')
-            ->join('categories', 'news.category_id', '=', 'categories.id')
-            ->select('news.*', 'categories.name as categoryName')
+        $newsByCategory = News::query()
+            ->with('category')
             ->where('category_id', $id)
-            ->get();
+            ->paginate(2);
 
         return view('news.index', [
             'newsList' => $newsByCategory

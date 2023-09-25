@@ -67,4 +67,6 @@
     </table>
 </div>
 
+{{ $categoriesList->links() }}
+
 @endsection
