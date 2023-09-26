@@ -19,11 +19,17 @@
     @method('PUT')
     <div class="form-group">
         <label for="title">Название</label>
-        <input type="text" class="form-control" name="name" id="name" value="{{ old('name') ?? $category->name }}">
+        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" value="{{ old('name') ?? $category->name }}">
+        @error('name')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
     <div class="form-group">
         <label for="description">Описание</label>
-        <input type="text" class="form-control" name="description" id="description" value="{{ old('description') ?? $category->description}}">
+        <input type="text" class="form-control @error('description') is-invalid @enderror" name="description" id="description" value="{{ old('description') ?? $category->description}}">
+        @error('description')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
     <br>
     <button type="submit" class="btn btn-success">Изменить</button>
