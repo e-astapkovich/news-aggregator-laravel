@@ -34,4 +34,20 @@ class Create extends FormRequest
             'status' => ['required', new Enum(Status::class)]
         ];
     }
+
+    public function messages(): array
+    {
+        return [];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'title' => 'наименование',
+            'description' => 'описание',
+            'author' => 'автор',
+            'image' => 'изображение',
+            'status' => 'статус'
+        ];
+    }
 }
