@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\News\Create;
+use App\Http\Requests\Admin\News\Edit;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\Models\News;
@@ -29,7 +31,7 @@ class NewsController extends Controller
             ->with(['categories' => $categories]);
     }
 
-    public function store(Request $request)
+    public function store(Create $request)
     {
         $request->flash();
 
@@ -73,7 +75,7 @@ class NewsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, News $news)
+    public function update(Edit $request, News $news)
     {
         $data = $request->only(
             'title',
@@ -92,9 +94,6 @@ class NewsController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(News $news)
     {
         // $news->delete();

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Categories\Create;
+use App\Http\Requests\Admin\Categories\Edit;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -21,7 +23,7 @@ class CategoryController extends Controller
         return view ('admin.categories.create');
     }
 
-    public function store(Request $request)
+    public function store(Create $request)
     {
         $request->flash();
         $data = $request->only([
@@ -33,7 +35,6 @@ class CategoryController extends Controller
             return redirect(route('admin.categories.index'))->with('success', 'Категория успешно добавлена');
         }
         return back()->with('error', 'Не удалось добавить категорию');
-        // dump($request->all());
     }
 
     /**
@@ -50,7 +51,7 @@ class CategoryController extends Controller
             ->with(['category' => $category]);
     }
 
-    public function update(Request $request, Category $category)
+    public function update(Edit $request, Category $category)
     {
         $request->flash();
 

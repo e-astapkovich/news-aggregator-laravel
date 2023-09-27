@@ -17,12 +17,18 @@
 
     @csrf
     <div class="form-group">
-        <label for="title">Название</label>
-        <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}">
+        <label for="name">Название</label>
+        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" value="{{ old('name') }}">
+        @error('name')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
     <div class="form-group">
         <label for="description">Описание</label>
-        <input type="text" class="form-control" name="description" id="description" value="{{ old('description') }}">
+        <input type="text" class="form-control @error('description') is-invalid @enderror" name="description" id="description" value="{{ old('description') }}">
+        @error('description')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
     <br>
     <button type="submit" class="btn btn-success">Сохранить</button>
