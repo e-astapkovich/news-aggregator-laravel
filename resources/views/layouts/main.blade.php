@@ -4,7 +4,9 @@
 <head>
     <meta charset="utf-8">
     <title>@section('title') ::NewsPortal @show</title>
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet"> --}}
+
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <style>
         .bd-placeholder-img {
