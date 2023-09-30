@@ -17,12 +17,22 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             NewsSeeder::class
         ]);
-        \App\Models\User::factory(2)->create();
 
+        \App\Models\User::factory(1)->create();
+
+        // Тестовый пользователь с правами админа
         \App\Models\User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@example.com',
             'password' => Hash::make('123')
+        ]);
+
+        // Тестовый пользователь, обычный (не админ)
+        \App\Models\User::factory()->create([
+            'name' => 'User1',
+            'email' => 'user1@example.com',
+            'password' => Hash::make('123'),
+            'is_admin' => 1
         ]);
     }
 }
