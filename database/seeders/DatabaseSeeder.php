@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             NewsSeeder::class
         ]);
 
-        \App\Models\User::factory(1)->create();
+        \App\Models\User::factory(3)->create();
 
         // Тестовый пользователь с правами админа
         \App\Models\User::factory()->create([
@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'User1',
             'email' => 'user1@example.com',
             'password' => Hash::make('123'),
-            'is_admin' => 1
+            'is_admin' => true
         ]);
     }
 }
