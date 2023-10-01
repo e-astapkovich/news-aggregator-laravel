@@ -1,12 +1,12 @@
-@extends('layout.main')
+@extends('layouts.main')
 
 @section('title')News List @parent @stop
 
 @section('content')
-<div class="album py-5 bg-body-tertiary">
+<div class="album bg-body-tertiary">
   <div class="container">
 
-    <section class="py-5 text-center container">
+    <section class="text-center container">
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
           <h1 class="fw-light">Новости</h1>

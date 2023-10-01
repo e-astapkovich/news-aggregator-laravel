@@ -1,11 +1,17 @@
-@extends('layout.main')
+@extends('layouts.main')
 
 @section('title') List of categories @parent @stop
 
 @section('content')
 
 <div class="container">
-    <h2>Категории новостей:</h2>
+    <section class="text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">Категории новостей</h1>
+            </div>
+        </div>
+    </section>
     <ul>
         <?php foreach ($categories as $category) : ?>
         <li>

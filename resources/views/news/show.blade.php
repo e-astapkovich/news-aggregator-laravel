@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layouts.main')
 
 @section('title') <?=$news->title?> @parent @stop
 @section('content')
