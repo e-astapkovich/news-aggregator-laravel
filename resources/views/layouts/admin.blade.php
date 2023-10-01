@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-bs-theme="auto">
+<html class="page" lang="en" data-bs-theme="auto">
 
 <head>
     <script src="/docs/5.3/assets/js/color-modes.js"></script>
@@ -103,10 +103,12 @@
     <!-- Custom styles for this template -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet"> --}}
+
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
-<body>
+<body class="page__body layout">
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
         <symbol id="check2" viewBox="0 0 16 16">
             <path
@@ -127,6 +129,8 @@
         </symbol>
     </svg>
 
+    {{-- TODO
+    Починить переключение цветовых тем--}}
     <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
         <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button"
             aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
@@ -252,6 +256,8 @@
 
         </div>
     </div>
+
+    <x-footer></x-footer>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     @stack('js')
 </body>

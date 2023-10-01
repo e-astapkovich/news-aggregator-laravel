@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="ru" data-bs-theme="auto">
-
+<html class="page" lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="auto">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@section('title') ::NewsPortal @show</title>
     {{-- <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet"> --}}
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-    <style>
+    {{-- <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -81,22 +81,16 @@
         .bd-mode-toggle {
             z-index: 1500;
         }
-    </style>
+    </style> --}}
 
 </head>
 
-<body>
+<body class="page__body layout">
     <x-header></x-header>
-
     <main>
-
         @yield('content')
-
     </main>
-
     <x-footer></x-footer>
-
-    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
 </html>
