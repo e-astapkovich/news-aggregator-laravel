@@ -11,7 +11,7 @@
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('admin.index')) active @endif" @if(request()->routeIs('admin.index')) aria-current="page" @endif href="<?=route('admin.index')?>">
                         <svg class="bi">
-                            <use xlink:href="#house-fill" />
+                            <use xlink:href="#house" />
                         </svg>
                         Панель управления
                     </a>
@@ -26,7 +26,7 @@
                         @endif
                         href="{{ route('admin.news.index') }}">
                             <svg class="bi">
-                                <use xlink:href="#file-earmark" />
+                                <use xlink:href="#news" />
                             </svg>
                             Новости
                     </a>
@@ -34,7 +34,7 @@
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('admin.categories.*')) active @endif" @if(request()->routeIs('admin.categories.*')) aria-current="page" @endif href="{{ route('admin.categories.index') }}">
                         <svg class="bi">
-                            <use xlink:href="#cart" />
+                            <use xlink:href="#categories" />
                         </svg>
                         Категории
                     </a>
