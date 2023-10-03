@@ -40,7 +40,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="">
+                    <a class="nav-link d-flex align-items-center gap-2
+                        @if(request()->routeIs('admin.users.*'))
+                            active
+                        @endif"
+                        @if(request()->routeIs('admin.users.*'))
+                            aria-current="page"
+                        @endif
+                        href="{{ route('admin.users.index') }}">
                         <svg class="bi">
                             <use xlink:href="#people" />
                         </svg>
