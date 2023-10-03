@@ -7,9 +7,11 @@
                 aria-label="Close"></button>
         </div>
         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
-            <ul class="nav flex-column">
+            <ul class="nav flex-column mb-3">
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('admin.index')) active @endif" @if(request()->routeIs('admin.index')) aria-current="page" @endif href="<?=route('admin.index')?>">
+                    <a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('admin.index')) active @endif"
+                        @if(request()->routeIs('admin.index')) aria-current="page" @endif href="
+                        <?=route('admin.index')?>">
                         <svg class="bi">
                             <use xlink:href="#house" />
                         </svg>
@@ -20,19 +22,20 @@
                     <a class="nav-link d-flex align-items-center gap-2
                         @if(request()->routeIs('admin.news.*'))
                             active
-                        @endif"
-                        @if(request()->routeIs('admin.news.*'))
-                            aria-current="page"
+                        @endif" @if(request()->routeIs('admin.news.*'))
+                        aria-current="page"
                         @endif
                         href="{{ route('admin.news.index') }}">
-                            <svg class="bi">
-                                <use xlink:href="#news" />
-                            </svg>
-                            Новости
+                        <svg class="bi">
+                            <use xlink:href="#news" />
+                        </svg>
+                        Новости
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('admin.categories.*')) active @endif" @if(request()->routeIs('admin.categories.*')) aria-current="page" @endif href="{{ route('admin.categories.index') }}">
+                    <a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('admin.categories.*')) active @endif"
+                        @if(request()->routeIs('admin.categories.*')) aria-current="page" @endif href="{{
+                        route('admin.categories.index') }}">
                         <svg class="bi">
                             <use xlink:href="#categories" />
                         </svg>
@@ -43,9 +46,8 @@
                     <a class="nav-link d-flex align-items-center gap-2
                         @if(request()->routeIs('admin.users.*'))
                             active
-                        @endif"
-                        @if(request()->routeIs('admin.users.*'))
-                            aria-current="page"
+                        @endif" @if(request()->routeIs('admin.users.*'))
+                        aria-current="page"
                         @endif
                         href="{{ route('admin.users.index') }}">
                         <svg class="bi">
@@ -54,27 +56,21 @@
                         Пользователи
                     </a>
                 </li>
-            </ul>
-
-            <hr class="my-3">
-
-            <ul class="nav flex-column mb-auto">
+                <hr class="my-3">
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="#">
-                        <svg class="bi">
-                            <use xlink:href="#gear-wide-connected" />
-                        </svg>
-                        Настройки
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="#">
+                    <a class="nav-link d-flex align-items-center gap-2" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
                         <svg class="bi">
                             <use xlink:href="#door-closed" />
                         </svg>
                         Выход
                     </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </li>
+                {{-- <hr class="my-3"> --}}
             </ul>
         </div>
     </div>
