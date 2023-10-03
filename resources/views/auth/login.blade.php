@@ -51,7 +51,7 @@
                             </div>
                         </div>
 
-                        <div class="row mb-0">
+                        <div class="row mb-5">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
@@ -63,6 +63,21 @@
                                     </a>
                                 @endif
                             </div>
+                        </div>
+                        <div class="text-center">
+                            <p class="mb-2">Войти с помощью:</p>
+                            <ul class="d-flex justify-content-center column-gap-4">
+                                <li class="list-group-item">
+                                    <a href="#">
+                                        <img src="assets/img/vk_logo_color.png" width="44" height="44" alt="Войти через Вконтакте">
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="#">
+                                        <img src="assets/img/github-mark.png" width="44" height="44" alt="Войти через Гитхаб">
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </form>
                 </div>
