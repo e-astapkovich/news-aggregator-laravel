@@ -22,15 +22,21 @@ class DatabaseSeeder extends Seeder
 
         // Тестовый пользователь с правами админа
         \App\Models\User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
+            'name' => 'Admin-1',
+            'email' => 'admin-1@example.com',
+            'password' => Hash::make('123')
+        ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'Admin-2',
+            'email' => 'admin-2@example.com',
             'password' => Hash::make('123')
         ]);
 
         // Тестовый пользователь, обычный (не админ)
         \App\Models\User::factory()->create([
-            'name' => 'User1',
-            'email' => 'user1@example.com',
+            'name' => 'User-1',
+            'email' => 'user-1@example.com',
             'password' => Hash::make('123'),
             'is_admin' => true
         ]);

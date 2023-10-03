@@ -1,9 +1,9 @@
 
 Тестовые пользователи:
 - Админ
-    - почта: admin@example.com
+    - почта: admin-1@example.com
     - пароль: 123
 
 - Не админ
-    - почта: user1@example.com
+    - почта: user-1@example.com
     - пароль: 123
