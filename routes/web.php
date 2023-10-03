@@ -51,7 +51,7 @@ Route::prefix('news-categories')->name('categories.')->group(static function() {
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'is.admin'])->group(static function() {
     Route::get('/', [AdminIndexController::class, 'index'])
         ->name('index');
-    Route::get('/users/toggleAdmin/{user}', [AdminUserController::class, 'toggleRole'])
+    Route::get('/users/toggleRole/{user}', [AdminUserController::class, 'toggleRole'])
         ->name('users.toggleRole');
     Route::resource('/news', AdminNewsController::class);
     Route::resource('/categories', AdminCategoryController::class);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class UserController extends Controller
@@ -18,15 +19,20 @@ class UserController extends Controller
 
     public function toggleRole(User $user)
     {
-        $user->is_admin = !$user->is_admin;
-        $user->save();
-        return back();
+        if ($user->id !== Auth::id()) {
+            $user->is_admin = !$user->is_admin;
+            $user->save();
+            return back();
+        } else {
+            return back()->with('error', 'Запрещено менять собственную роль');
+        }
+
     }
 
     public function create() {}
     public function store(Request $request) {}
-    public function show(string $id) {}
-    public function edit(string $id) {}
+    public function show(User $user) {}
+    public function edit(User $user) {}
     public function update(Request $request, User $user) {}
-    public function destroy(string $id) {}
+    public function destroy(User $user) {}
 }
