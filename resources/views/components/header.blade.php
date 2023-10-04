@@ -45,6 +45,12 @@
                                 </li>
                             @endif
                         @else
+                            @if (Auth::user()->avatar !== null)
+                                <li class="nav-item">
+                                    <img src="{{ Auth::user()->avatar }}" width="50px" alt="фото пользователя">
+                                </li>
+
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
