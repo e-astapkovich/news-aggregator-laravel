@@ -68,7 +68,7 @@
                             <p class="mb-2">Войти с помощью:</p>
                             <ul class="d-flex justify-content-center column-gap-4">
                                 <li class="list-group-item">
-                                    <a href="#">
+                                    <a href="{{ route('social-providers.redirect') }}">
                                         <img src="{{ asset('assets/img/vk_logo_color.png') }}" width="44" height="44" alt="Войти через Вконтакте">
                                     </a>
                                 </li>

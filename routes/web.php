@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\IndexController as AdminIndexController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\SocialProvidersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -56,6 +57,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'is.admin'])->group(
     Route::resource('/news', AdminNewsController::class);
     Route::resource('/categories', AdminCategoryController::class);
     Route::resource('/users', AdminUserController::class);
+});
+
+Route::group(['middleware' => 'guest'], function() {
+    Route::get('/vkontakte/redirect', [SocialProvidersController::class, 'redirect'])
+        ->name('social-providers.redirect');
+
+    Route::get('/vkontakte/callback', [SocialProvidersController::class, 'callback'])
+        ->name('social-providers.callback');
 });
 
 
