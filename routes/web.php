@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\IndexController as AdminIndexController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\ParserController as AdminParserController;
 use App\Http\Controllers\SocialProvidersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
-Route::prefix('news')->name('news.')->group(static function() {
+Route::prefix('news')->name('news.')->group(static function () {
     Route::get('/', [NewsController::class, 'index'])
         ->name('index');
 
@@ -32,7 +33,7 @@ Route::prefix('news')->name('news.')->group(static function() {
         ->name('show');
 });
 
-Route::prefix('news-categories')->name('categories.')->group(static function() {
+Route::prefix('news-categories')->name('categories.')->group(static function () {
     Route::get('/', [NewsCategoriesController::class, 'index'])
         ->name('index');
 
@@ -49,17 +50,19 @@ Route::prefix('news-categories')->name('categories.')->group(static function() {
 //         ->name('categories.show');
 // });
 
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'is.admin'])->group(static function() {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'is.admin'])->group(static function () {
     Route::get('/', [AdminIndexController::class, 'index'])
-        ->name('index');
-    Route::get('/users/toggleRole/{user}', [AdminUserController::class, 'toggleRole'])
-        ->name('users.toggleRole');
+                    ->name('index');
+    Route::get('/parser', AdminParserController::class)
+                    ->name('parser');
     Route::resource('/news', AdminNewsController::class);
     Route::resource('/categories', AdminCategoryController::class);
     Route::resource('/users', AdminUserController::class);
+    Route::get('/users/toggleRole/{user}', [AdminUserController::class, 'toggleRole'])
+                    ->name('users.toggleRole');
 });
 
-Route::group(['middleware' => 'guest'], function() {
+Route::group(['middleware' => 'guest'], function () {
     Route::get('/vkontakte/redirect', [SocialProvidersController::class, 'redirect'])
         ->name('social-providers.redirect');
 

@@ -63,7 +63,7 @@
                         @endif" @if(request()->routeIs('admin.users.*'))
                         aria-current="page"
                         @endif
-                        href="">
+                        href="{{ route('admin.parser') }}">
                         <svg class="bi">
                             <use xlink:href="#parse" />
                         </svg>
