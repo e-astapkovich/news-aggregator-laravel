@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\DefineLoginEvent;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -41,6 +42,7 @@ class SocialProvidersController extends Controller
         $user->avatar = $socialUser->avatar;
         $user->save();
         Auth::login($user, true);
+        event(new DefineLoginEvent($user));
 
         return redirect(route('welcome'));
     }
