@@ -2,14 +2,14 @@
 
 namespace App\Services;
 
-use App\Services\Interfaces\Parser;
+use App\Services\Interfaces\IParser;
 use Orchestra\Parser\Xml\Facade as XmlParser;
 
-class ParserService implements Parser
+class ParserService implements IParser
 {
     private string $link;
 
-    public function setLink(string $url): Parser
+    public function setLink(string $url): IParser
     {
         $this->link = $url;
         return $this;

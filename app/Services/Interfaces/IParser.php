@@ -2,8 +2,8 @@
 
 namespace App\Services\Interfaces;
 
-interface Parser
+interface IParser
 {
-    public function setLink(string $url): Parser;
+    public function setLink(string $url): IParser;
     public function saveParseData(): void;
 }
