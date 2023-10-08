@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service;
+namespace App\Services;
 
 use App\Services\Interfaces\Parser;
 use Orchestra\Parser\Xml\Facade as XmlParser;
@@ -8,6 +8,7 @@ use Orchestra\Parser\Xml\Facade as XmlParser;
 class ParserService implements Parser
 {
     private string $link;
+
     public function setLink(string $url): Parser
     {
         $this->link = $url;
