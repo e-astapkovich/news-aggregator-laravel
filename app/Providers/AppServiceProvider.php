@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Services\Interfaces\IParser;
+use App\Services\Interfaces\ISocial;
 use App\Services\ParserService;
+use App\Services\SocialService;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(IParser::class, ParserService::class);
+        $this->app->bind(ISocial::class, SocialService::class);
     }
 
     /**
