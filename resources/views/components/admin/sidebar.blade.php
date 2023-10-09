@@ -56,6 +56,20 @@
                         Пользователи
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2
+                        @if(request()->routeIs('admin.users.*'))
+                            active
+                        @endif" @if(request()->routeIs('admin.users.*'))
+                        aria-current="page"
+                        @endif
+                        href="{{ route('admin.parser') }}">
+                        <svg class="bi">
+                            <use xlink:href="#parse" />
+                        </svg>
+                        Парсер
+                    </a>
+                </li>
                 <hr class="my-3">
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2" href="{{ route('logout') }}"
