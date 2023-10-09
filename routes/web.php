@@ -63,7 +63,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'is.admin'])->group(
 });
 
 Route::group(['middleware' => 'guest'], function () {
-    Route::get('/vkontakte/redirect', [SocialProvidersController::class, 'redirect'])
+    Route::get('/{driver}/redirect', [SocialProvidersController::class, 'redirect'])
         ->name('social-providers.redirect');
 
     Route::get('/vkontakte/callback', [SocialProvidersController::class, 'callback'])
