@@ -51,7 +51,7 @@ class ParserService implements IParser
             );
         }
 
-        dd($this->parsedData);
+        $this->parsedData = [];
     }
 
     protected function checkAndSaveCategories(): void

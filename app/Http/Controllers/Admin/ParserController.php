@@ -10,11 +10,16 @@ use Illuminate\Http\Request;
 
 class ParserController extends Controller
 {
+    private static array $newsSources = [
+        "https://news.rambler.ru/rss/tech/",
+        "https://lenta.ru/rss",
+    ];
+
     public function __invoke(Request $request, IParser $parserService)
     {
-        $url = "https://lenta.ru/rss";
-        $url2 = "https://news.rambler.ru/rss/tech/";
-
-        $parserService->setLink($url2)->saveParseData();
+        foreach (self::$newsSources as $url)
+        {
+            $parserService->setLink($url)->saveParseData();
+        }
     }
 }
