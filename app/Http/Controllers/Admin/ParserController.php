@@ -23,5 +23,6 @@ class ParserController extends Controller
         {
             $parserService->setLink($url)->saveParseData();
         }
+        return redirect()->route('admin.news.index')->with('success', "Новости загружены");
     }
 }
