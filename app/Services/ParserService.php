@@ -31,9 +31,6 @@ class ParserService implements IParser
             'newsList' => ['uses' => 'channel.item[title,description,author,pubDate,category,enclosure::url]'],
         ]);
 
-        // Из спарсенного списка новостей извлекаем названия категорий, и если его нет в БД (таблица Categories), то добавляем
-        $this->checkAndSaveCategories();
-
         foreach ($this->parsedData['newsList'] as $newsItem) {
 
             News::firstOrCreate(
@@ -42,7 +39,7 @@ class ParserService implements IParser
                 ],
                 [
                     'description' => $newsItem['description'],
-                    'category_id' => Category::firstWhere('name', $newsItem['category'])['id'],
+                    'category_id' => Category::firstOrCreate(['name' => $newsItem['category']])->id,
                     'author' => $newsItem['author'],
                     'image' => $newsItem['enclosure::url'] ?? $this->parsedData['image'],
                     'status' => Status::ACTIVE->value,
@@ -52,14 +49,5 @@ class ParserService implements IParser
         }
 
         $this->parsedData = [];
-    }
-
-    protected function checkAndSaveCategories(): void
-    {
-        foreach ($this->parsedData['newsList'] as $newsItem) {
-            Category::firstOrCreate(
-                ['name' => $newsItem['category']]
-            );
-        }
     }
 }
