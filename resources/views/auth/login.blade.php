@@ -68,12 +68,12 @@
                             <p class="mb-2">Войти с помощью:</p>
                             <ul class="d-flex justify-content-center column-gap-4">
                                 <li class="list-group-item">
-                                    <a href="{{ route('social-providers.redirect') }}">
+                                    <a href="{{ route('social-providers.redirect', ['driver' => 'vkontakte']) }}">
                                         <img src="{{ asset('assets/img/vk_logo_color.png') }}" width="44" height="44" alt="Войти через Вконтакте">
                                     </a>
                                 </li>
                                 <li class="list-group-item">
-                                    <a href="#">
+                                    <a href={{ route('social-providers.redirect', ['driver' => 'github']) }}>
                                         <img src="{{ asset('assets/img/github-mark.png') }}" width="44" height="44" alt="Войти через Гитхаб">
                                     </a>
                                 </li>

@@ -14,8 +14,14 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            CategorySeeder::class,
-            NewsSeeder::class
+
+            /**
+             * Фейковые новости и категории
+             * Использовались до того, как был создан ParserController
+             */
+
+            // CategorySeeder::class,
+            // NewsSeeder::class
         ]);
 
         \App\Models\User::factory(3)->create();
