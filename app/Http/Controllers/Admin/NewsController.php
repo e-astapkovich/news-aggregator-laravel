@@ -17,7 +17,7 @@ class NewsController extends Controller
         $news = News::query()
             ->status()
             ->with('category')
-            ->paginate(10);
+            ->paginate(20);
 
         return view('admin.news.index')
             ->with(['newsList' => $news]);

@@ -12,7 +12,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::query()
-            ->paginate(10);
+            ->paginate(15);
         return view('admin.users.index')
             ->with(['users' => $users]);
     }
