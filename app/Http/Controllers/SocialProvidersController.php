@@ -16,7 +16,7 @@ class SocialProvidersController extends Controller
         return Socialite::driver($driver)->redirect();
     }
 
-    public function callback(ISocial $socialServise) {
+    public function callback($driver, ISocial $socialServise) {
 
         try {
             $socialUser = Socialite::driver($driver)->user();
@@ -25,8 +25,6 @@ class SocialProvidersController extends Controller
         }
 
         $user = $socialServise->findOrCreateUser($socialUser);
-
-        dd($user);
 
         Auth::login($user, true);
         event(new DefineLoginEvent($user));
