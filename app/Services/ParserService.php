@@ -41,11 +41,11 @@ class ParserService implements IParser
                 [
                     'description' => $newsItem['description'],
                     'category_id' => Category::firstOrCreate(['name' => $newsItem['category']])->id,
-                    'author' => $newsItem['author'],
+                    'author' => $newsItem['author'] ?? "N/A",
                     'image' => $newsItem['enclosure::url'] ?? $this->parsedData['image'],
                     'status' => Status::ACTIVE->value,
                     'created_at' => now(),                                                          // дата создания ЗАПИСИ в БД
-                    'publication_date' => Carbon::create($newsItem['pubDate'])->toDateTimeString() // дата публикации новости в источнике
+                    'publication_date' => Carbon::create($newsItem['pubDate'])->toDateTimeString()  // дата публикации новости в источнике
                 ]
             );
         }
