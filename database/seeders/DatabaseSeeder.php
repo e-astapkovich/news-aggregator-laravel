@@ -16,12 +16,17 @@ class DatabaseSeeder extends Seeder
         $this->call([
 
             /**
+             * Первичное заполнение таблицы источников новостей для парсинга
+             */
+             ParsingResourcesSeeder::class
+
+            /**
              * Фейковые новости и категории
              * Использовались до того, как был создан ParserController
              */
-
             // CategorySeeder::class,
             // NewsSeeder::class
+
         ]);
 
         \App\Models\User::factory(3)->create();
