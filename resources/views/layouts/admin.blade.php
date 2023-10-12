@@ -276,6 +276,7 @@
 
     <x-footer></x-footer>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
     @stack('js')
 </body>
 

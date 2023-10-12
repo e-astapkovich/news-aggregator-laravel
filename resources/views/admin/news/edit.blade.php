@@ -63,4 +63,16 @@
     <button type="submit" class="btn btn-success">Сохранить изменения</button>
 </form>
 
+@push('js')
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#description' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+
+@endpush
+
 @endsection
