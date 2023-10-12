@@ -16,21 +16,21 @@
     @method('PUT')
     <div class="form-group">
         <label for="title">Заголовок</label>
-        <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" value="{{ old('title') }}">
+        <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" value="{{ old('title') ?? $news->title }}">
         @error('title')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
     <div class="form-group">
         <label for="author">Автор</label>
-        <input type="text" class="form-control @error('author') is-invalid @enderror" name="author" id="author" value="{{ old('author') }}">
+        <input type="text" class="form-control @error('author') is-invalid @enderror" name="author" id="author" value="{{ old('author') ?? $news->author }}">
         @error('author')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
     <div class="form-group">
         <label for="description">Описание</label>
-        <textarea class="form-control" name="description @error('description') is-invalid @enderror" id="description">{{ old('description') }}</textarea>
+        <textarea class="form-control" name="description @error('description') is-invalid @enderror" id="description">{{ old('description') ?? $news->description }}</textarea>
         @error('description')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -39,7 +39,7 @@
         <label for="category">Автор</label>
         <select class="form-select @error('category') is-invalid @enderror" name="category_id" id="category">
             @foreach ($categories as $category)
-                <option value="{{ $category->id }}" @selected($category->id == old('category_id'))>
+                <option value="{{ $category->id }}" @selected($category->id == old('category_id') || $category->id === $news->category_id)>
                     {{ $category->name }}
                 </option>
             @endforeach
@@ -51,9 +51,9 @@
     <div class="form-group">
         <label for="status">Статус</label>
         <select class="form-select @error('status') is-invalid @enderror" name="status" id="status">
-            <option @if(old('status')==='draft' ) selected @endif>draft</option>
-            <option @if(old('status')==='active' ) selected @endif>active</option>
-            <option @if(old('status')==='blocked' ) selected @endif>blocked</option>
+            <option @if(old('status')==='draft' || $news->status === 'draft') selected @endif>draft</option>
+            <option @if(old('status')==='active' || $news->status === 'active') selected @endif>active</option>
+            <option @if(old('status')==='blocked' || $news->status === 'blocked') selected @endif>blocked</option>
         </select>
         @error('status')
             <div class="invalid-feedback">{{ $message }}</div>
