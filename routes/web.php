@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\ParserController as AdminParserController;
+use App\Http\Controllers\Admin\ParsingResourcesController as AdminParsingResourcesController;
 use App\Http\Controllers\SocialProvidersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -55,6 +56,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'is.admin'])->group(
                     ->name('index');
     Route::get('/parser', AdminParserController::class)
                     ->name('parser');
+    Route::resource('/parsing-resources', AdminParsingResourcesController::class);
     Route::resource('/news', AdminNewsController::class);
     Route::resource('/categories', AdminCategoryController::class);
     Route::resource('/users', AdminUserController::class);
