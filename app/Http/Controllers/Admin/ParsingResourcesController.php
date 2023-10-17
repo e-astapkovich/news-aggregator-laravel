@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ParsingResource;
+use App\Http\Requests\Admin\Parsing\Ressources\Create;
+use App\Http\Requests\Admin\Parsing\Ressources\Edit;
 
 class ParsingResourcesController extends Controller
 {
@@ -17,15 +19,21 @@ class ParsingResourcesController extends Controller
 
     public function create()
     {
-
+        return view('admin.parsing.resources.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(Create $request)
     {
-        //
+        $request->flash();
+        $data = $request->only([
+            'url',
+            'description'
+        ]);
+        $resource = new ParsingResource($data);
+        if ($resource->save()) {
+            return redirect(route('admin.parsing-resources.index'))->with('siccess', 'Источник успешно добавлен');
+        }
+        return back()->with('error', 'Не удалось добавить источник');
     }
 
     /**
