@@ -11,16 +11,13 @@ class ParsingResourcesController extends Controller
     public function index()
     {
         $parsingResources = ParsingResource::query()->paginate(20);
-        return view('admin.parsing.resources')
+        return view('admin.parsing.resources.index')
             ->with(['resourcesList' => $parsingResources]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+
     }
 
     /**
