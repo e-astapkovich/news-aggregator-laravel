@@ -68,4 +68,16 @@
     <button type="submit" class="btn btn-success">Добавить новость</button>
 </form>
 
+@push('js')
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#description' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+
+@endpush
+
 @endsection

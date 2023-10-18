@@ -58,6 +58,20 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2
+                        @if(request()->routeIs('admin.parsing-resources.*'))
+                            active
+                        @endif" @if(request()->routeIs('admin.parsing-resources.*'))
+                        aria-current="page"
+                        @endif
+                        href="{{ route('admin.parsing-resources.index') }}">
+                        <svg class="bi">
+                            <use xlink:href="#parsing-resources" />
+                        </svg>
+                        Список источников
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2
                         @if(request()->routeIs('admin.users.*'))
                             active
                         @endif" @if(request()->routeIs('admin.users.*'))
@@ -67,7 +81,7 @@
                         <svg class="bi">
                             <use xlink:href="#parse" />
                         </svg>
-                        Парсер
+                        Запустить парсинг
                     </a>
                 </li>
                 <hr class="my-3">

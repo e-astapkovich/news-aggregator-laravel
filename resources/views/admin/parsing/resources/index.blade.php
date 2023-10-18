@@ -1,55 +1,37 @@
 @extends('layouts.admin')
 
-@section('title') Новости @parent @stop
+@section('title') Источники новостей @parent @stop
 
 @section('content')
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Список новостей</h1>
+    <h1 class="h2">Список источников</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group me-2">
-            <a type="button" class="btn btn-sm btn-outline-secondary" href="{{ route('admin.news.create') }}">Добавить
-                новость</a>
+            <a type="button" class="btn btn-sm btn-outline-secondary" href="{{ route('admin.parsing-resources.create') }}">Добавить
+                источник</a>
         </div>
     </div>
 </div>
+@include('inc.message')
 <div class="table-responsive small">
-    @include('inc.message')
-    <form>
-        <span>Статус: </span>
-        <select id="filter">
-            <option>--выберите вариант--</option>
-            <option>{{ \App\Enums\News\Status::DRAFT->value }}</option>
-            <option>{{ \App\Enums\News\Status::ACTIVE->value }}</option>
-            <option>{{ \App\Enums\News\Status::BLOCKED->value }}</option>
-        </select>
-    </form>
     <table class="table table-striped table-sm">
         <thead>
             <tr>
                 <th scope="col">id</th>
-                <th scope="col">Заголовок</th>
-                <th scope="col">Описание</th>
-                <th scope="col">Автор</th>
-                <th scope="col">Категория</th>
-                <th scope="col">Статус</th>
-                <th scope="col">Действия</th>
+                <th scope="col">url</th>
             </tr>
         </thead>
         <tbody>
 
-            @forelse ($newsList as $news)
+            @forelse ($resourcesList as $resource)
 
             <tr>
-                <td>{{ $news->id }}</td>
-                <td>{{ $news->title }}</td>
-                <td>{{ $news->description }}</td>
-                <td>{{ $news->author }}</td>
-                <td>{{ $news->category->name }}</td>
-                <td>{{ $news->status }}</td>
+                <td>{{$resource['id']}}</td>
+                <td>{{$resource['url']}}</td>
                 <td>
                     <a class="link-offset-2 link-underline link-underline-opacity-0"
-                        href="{{ route('admin.news.edit', $news) }}">
+                        href="{{ route('admin.parsing-resources.edit', $resource) }}">
                         <svg fill="#000000" width="20px" height="20px" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -57,7 +39,7 @@
                         </svg>
                     </a>
                     <a class="link-offset-2 link-underline link-underline-opacity-0"
-                        href="{{ route('admin.news.destroy', $news) }}">
+                        href="{{ route('admin.parsing-resources.destroy', $resource) }}">
                         <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path d="M10 12V17" stroke="#000000" stroke-width="1" stroke-linecap="round"
@@ -77,7 +59,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="7">Нет новостей</td>
+                <td colspan="3">Нет новостей</td>
             </tr>
             @endforelse
 
@@ -85,18 +67,6 @@
     </table>
 </div>
 
-{{ $newsList->links() }}
+{{ $resourcesList->links() }}
 
 @endsection
-
-@push('js')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        let filter = document.getElementById('filter');
-        filter.addEventListener('change', function(e) {
-            console.log('hello from filter');
-            location.href = "?f=" + this.value;
-        })
-        });
-</script>
-@endpush
