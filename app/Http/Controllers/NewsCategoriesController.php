@@ -11,7 +11,7 @@ class NewsCategoriesController extends Controller
 {
     public function index() {
 
-        $categories = Category::paginate(5);
+        $categories = Category::paginate(20);
 
         return view('news-categories.categoriesList', [
             'categories' => $categories
