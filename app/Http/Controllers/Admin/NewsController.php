@@ -17,6 +17,7 @@ class NewsController extends Controller
         $news = News::query()
             ->status()
             ->with('category')
+            ->orderByDesc('created_at')
             ->paginate(20);
 
         return view('admin.news.index')

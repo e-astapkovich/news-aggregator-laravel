@@ -12,6 +12,7 @@ class NewsController extends Controller
         // $news = News::all();
         $news = News::query()
             ->with('category')
+            ->orderByDesc('created_at')
             ->paginate(6);
 
         // $news = DB::table('news')
