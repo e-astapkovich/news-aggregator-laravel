@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\NewsParsingJob;
 use App\Models\ParsingResource;
 use App\Services\Interfaces\IParser;
 use Illuminate\Http\Request;
@@ -15,8 +16,8 @@ class ParserController extends Controller
 
         foreach ($parsingResources as $resource)
         {
-            $parserService->setLink($resource->url)->saveParseData();
+            dispatch(new NewsParsingJob($resource->url));
         }
-        return redirect()->route('admin.news.index')->with('success', "Новости загружены");
+        return redirect()->route('admin.news.index')->with('success', "Парсинг новостей запущен в фоновом режиме");
     }
 }

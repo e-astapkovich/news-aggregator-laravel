@@ -49,7 +49,5 @@ class ParserService implements IParser
                 ]
             );
         }
-
-        $this->parsedData = [];
     }
 }
