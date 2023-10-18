@@ -36,9 +36,6 @@ class ParsingResourcesController extends Controller
         return back()->with('error', 'Не удалось добавить источник');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
@@ -60,11 +57,15 @@ class ParsingResourcesController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(ParsingResource $resource)
     {
-        //
+        dd($resource);
+        $resource->delete();
+
+        // if ($resource->delete()) {
+        //     return redirect()->route('admin.parsing-resources.index')->with('success', "Источник удален");
+        // }
+
+        // return back()->with('error', 'Не удалось удалить запись');
     }
 }

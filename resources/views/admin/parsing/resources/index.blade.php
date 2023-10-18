@@ -39,7 +39,7 @@
                         </svg>
                     </a>
                     <a class="link-offset-2 link-underline link-underline-opacity-0"
-                        href="#">
+                        href="{{ route('admin.parsing-resources.destroy', $resource) }}">
                         <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path d="M10 12V17" stroke="#000000" stroke-width="1" stroke-linecap="round"
