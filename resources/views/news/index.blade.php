@@ -19,20 +19,14 @@
       @forelse ($newsList as $news)
 
       <div class="col">
-        <div class="card shadow-sm">
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-            role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-              dy=".3em">Thumbnail</text>
-          </svg>
+        <div class="card shadow-sm card-limited">
+          <img class="card-img-top card-img-limited" width="100%" height="225" src="{{ $news->image }}" alt="иллюстрация к новости">
           <div class="card-body">
-            <p class="card-text fw-bold">{{ $news->title }}</p>
-            <p class="card-text">{{ $news->description }}</p>
+            <p class="card-text fw-bold card-text-limited">{{ $news->title }}</p>
+            <p class="card-text card-text-limited">{{ $news->description }}</p>
             <a href="{{  route('news.show', $news) }}">Подробнее...</a>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                {{-- <button type="button" class="btn btn-sm btn-outline-secondary">View</button> --}}
                 <a href="{{ route('categories.show', ['id' => $news->category_id]) }}">
                   {{ $news->category->name }}
                 </a>

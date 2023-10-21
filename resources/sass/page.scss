@@ -7,3 +7,17 @@
     display: grid;
     grid-template-rows: min-content 1fr min-content;
 }
+
+.card-limited {
+    min-height: 530px;
+}
+
+.card-text-limited {
+    max-height: 150px;
+    overflow: hidden;
+}
+
+.card-img-limited {
+    min-width: 225px;
+    object-fit: contain;
+}
