@@ -68,7 +68,7 @@
     <button type="submit" class="btn btn-success">Добавить новость</button>
 </form>
 
-@push('js')
+{{-- @push('js')
 
 <script>
     ClassicEditor
@@ -78,6 +78,6 @@
         } );
 </script>
 
-@endpush
+@endpush --}}
 
 @endsection

@@ -30,7 +30,7 @@
     </div>
     <div class="form-group">
         <label for="description">Описание</label>
-        <textarea class="form-control" name="description @error('description') is-invalid @enderror" id="description">{{ old('description') ?? $news->description }}</textarea>
+        <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description">{{ old('description') ?? $news->description }}</textarea>
         @error('description')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -63,7 +63,7 @@
     <button type="submit" class="btn btn-success">Сохранить изменения</button>
 </form>
 
-@push('js')
+{{-- @push('js')
 
 <script>
     ClassicEditor
@@ -73,6 +73,6 @@
         } );
 </script>
 
-@endpush
+@endpush --}}
 
 @endsection
