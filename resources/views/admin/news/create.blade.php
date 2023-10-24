@@ -16,32 +16,36 @@
 
 @include('inc.message')
 
-<form method="post" action="{{ route('admin.news.store') }}">
+<form method="post" action="{{ route('admin.news.store') }}" enctype="multipart/form-data">
 
     @csrf
-    <div class="form-group">
+    <div class="form-group mb-4">
         <label for="title">Заголовок</label>
         <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" value="{{ old('title') }}">
         @error('title')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
-    <div class="form-group">
+    <div class="form-group mb-4">
         <label for="author">Автор</label>
         <input type="text" class="form-control @error('author') is-invalid @enderror" name="author" id="author" value="{{ old('author') }}">
         @error('author')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
-    <div class="form-group">
+    <div class="form-group mb-4">
         <label for="description">Описание</label>
         <textarea class="form-control" name="description @error('description') is-invalid @enderror" id="description">{{ old('description') }}</textarea>
         @error('description')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
-    <div class="form-group">
-        <label for="category">Автор</label>
+    <div class="form-group mb-4">
+        <label for="image">Изображение</label><br>
+        <input type="file" class="form-control" name="image">
+    </div>
+    <div class="form-group mb-4">
+        <label for="category">Категория</label>
         <select class="form-select @error('category') is-invalid @enderror" name="category_id" id="category">
             @foreach ($categories as $category)
                 <option value="{{ $category->id }}" @selected($category->id == old('category_id'))>
@@ -53,7 +57,7 @@
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
-    <div class="form-group">
+    <div class="form-group mb-4">
         <label for="status">Статус</label>
         <select class="form-select @error('status') is-invalid @enderror" name="status" id="status">
             <option @if(old('status')==='draft' ) selected @endif>draft</option>

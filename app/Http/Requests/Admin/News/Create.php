@@ -30,7 +30,7 @@ class Create extends FormRequest
             'description' => ['nullable', 'string'],
             'category_id' => ['required', 'integer', "exists:{$tableNameCategory},id"],
             'author' => ['required', 'string', 'min:2', 'max:100'],
-            'image' => ['nullable', 'image'],
+            'image' => ['sometimes', 'image', 'max:1500'],
             'status' => ['required', new Enum(Status::class)]
         ];
     }

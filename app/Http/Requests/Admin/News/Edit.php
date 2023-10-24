@@ -30,7 +30,6 @@ class Edit extends FormRequest
             'description' => ['nullable', 'string'],
             'category_id' => ['required', 'integer', "exists:{$tableNameCategory},id"],
             'author' => ['required', 'string', 'min:2', 'max:100'],
-            'image' => ['nullable', 'image'],
             'status' => ['required', new Enum(Status::class)]
         ];
     }
